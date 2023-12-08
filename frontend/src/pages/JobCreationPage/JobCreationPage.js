@@ -93,6 +93,15 @@ function JobCreationPage() {
 
       // Do stuff with contract
       console.log(contract);
+
+      const res = await contract.postJob(
+        "hello1",
+        "hellodes",
+        "sds",
+        123,
+        ["hello", "world"],
+      );
+      console.log(res);
     } catch (e) {
       console.log(e);
     }
