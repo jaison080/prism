@@ -1,8 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+interface IPUSHCommInterface {
+    function sendNotification(address _channel, address _recipient, bytes calldata _identity) external;
+}
+
+
+
 contract LGBTQJobMarket {
     // Struct to represent a job posting
+       address public EPNS_COMM_ADDRESS = 0x0C34d54a09CFe75BCcd878A469206Ae77E0fe6e7;
     struct JobPosting {
         address employer; // Address of the company posting the job
         string jobTitle;
@@ -11,6 +18,9 @@ contract LGBTQJobMarket {
         uint256 salary;
         string[] tags;
     }
+
+
+
 
     // Struct to represent a job application
     struct JobApplication {
@@ -46,6 +56,24 @@ contract LGBTQJobMarket {
          for (uint256 i = 0; i < _tags.length; i++) {
             jobsByTag[_tags[i]]= jobPostings[jobPostingCount];
         }
+      
+        IPUSHCommInterface(EPNS_COMM_ADDRESS).sendNotification(
+            0xD44d3581954f8D6578a6f77975904dc378DCbd0D, // from channel
+            0xA7597a561Be84C31C97f70343bB4cEe01d731A38, // to recipient, put address(this) in case you want Broadcast or Subset. For Targeted put the address to which you want to send
+            bytes(
+                string(
+                    // We are passing identity here: https://docs.epns.io/developers/developer-guides/sending-notifications/advanced/notification-payload-types/identity/payload-identity-implementations
+                    abi.encodePacked(
+                        "0", // this is notification identity: https://docs.epns.io/developers/developer-guides/sending-notifications/advanced/notification-payload-types/identity/payload-identity-implementations
+                        "+", // segregator
+                        "1", // this is payload type: https://docs.epns.io/developers/developer-guides/sending-notifications/advanced/notification-payload-types/payload (1, 3 or 4) = (Broadcast, targeted or subset)
+                        "+", // segregator
+                        "Tranfer Alert", // this is notification title
+                        "+", // segregator
+                        "Hooray! " // notification body
+                    )
+                
+            )));
         emit JobPosted(jobPostingCount, msg.sender, _jobTitle);
     }
 
