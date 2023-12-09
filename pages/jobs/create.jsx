@@ -3,9 +3,8 @@ import CustomTitle from "../../utils/CustomTitle";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { ethers, Contract } from "ethers";
 import { supportedNetworks } from "../../utils/networks";
-import Navbar from "../../components/Navbar/Navbar";
-
 const jobsAbi = require("../../contracts/artifacts/contracts/jobs.sol/LGBTQJobMarket.json").abi;
+
 
 function JobCreationPage() {
   const [role, setRole] = useState("");
@@ -71,38 +70,35 @@ function JobCreationPage() {
       alert(`Please switch to a supported network. Your current network is ${chainId}. Supproted chain ids are [${Object.values(supportedNetworks).join(", ")}]`);
       return;
     }
-    
+
     try {
 
+      // Prompt user for account connections
       await provider.send("eth_requestAccounts", []);
       const signer = provider.getSigner();
 
-
-      if(!signer) {
+      if (!signer) {
         alert("Signer not found");
         return;
       }
 
-      if(!process.env.REACT_APP_CONTRACT_ADDRESS) {
+      if (!process.env.NEXT_PUBLIC_CONTRACT_ADDRESS) {
         alert("Contract address not found");
         return;
       }
 
       const contract = new Contract(
-        process.env.REACT_APP_CONTRACT_ADDRESS,
+        process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
         jobsAbi,
         signer
       );
 
-      // Do stuff with contract
-      console.log(contract);
-
       const res = await contract.postJob(
-        "hello1",
-        "hellodes",
-        "sds",
-        123,
-        ["hello", "world"],
+        role,
+        description,
+        "Ethereum Foundation",
+        10000,
+        tags?.split(","),
       );
       console.log(res);
     } catch (e) {
@@ -123,7 +119,6 @@ function JobCreationPage() {
   return (
     <>
       <CustomTitle title="Add Job" />
-      <Navbar />
       <div className={"registration__container"}>
         <div className={"registration__heading"}>ADD JOB</div>
         <div className={"registration__form"}>
