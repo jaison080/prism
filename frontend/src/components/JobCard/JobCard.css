@@ -1,0 +1,92 @@
+.job_card {
+  display: grid;
+  grid-template-columns: 80px auto 100px;
+  grid-template-rows: 35px 10px 35px;
+  width: 700px;
+  position: relative;
+  border: 1px solid #00487c;
+  padding: 24px;
+}
+
+.job_card:hover,
+.job_card:focus {
+  background-color: rgba(0, 166, 194, 0.03);
+  border-color: #b2e4ec;
+}
+
+.job_card_company_logo_img {
+  grid-area: 1 / 1 / 2 / 2;
+  background-color: #fff;
+  border: 1px solid #e3e3e3;
+  height: 80px;
+  width: 80px;
+  box-sizing: border-box;
+  position: relative;
+  padding: 5px;
+}
+
+.job_card_company_logo_img img {
+  max-height: calc(100% - 10px);
+  max-width: calc(100% - 10px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.job_card_job_title {
+  grid-area: 1 / 2 / 2 / 3;
+  font-size: 16px;
+  align-self: start;
+  font-weight: 500;
+  margin-top: 5px;
+  padding: 0 24px;
+}
+
+.job_card_company_name {
+  grid-area: 2 / 2 / 3 / 3;
+  align-self: center;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 5px;
+  padding: 0 24px;
+}
+
+.job_card_skills_container {
+  grid-area: 3 / 2 / 4 / 3;
+  align-self: center;
+  padding-top: 10px;
+  padding: 0 24px;
+}
+
+.job_card_skill {
+  display: inline;
+  color: #00a6c2;
+  border-radius: 2px;
+  background-color: rgba(0, 166, 194, 0.05);
+  border: 1px solid rgba(0, 166, 194, 0.15);
+  padding: 5px 8px;
+  font-size: 12px;
+}
+
+.job_card button {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 6px 12px;
+  z-index: 2;
+}
+.job_card_apply {
+  grid-area: 1 / 3 / 2 / 4;
+  background-color: #00487c;
+  color: #fff;
+  border: none;
+}
+.job_card_save {
+  grid-area: 3 / 3 / 4 / 4;
+  background-color: #fff;
+  border: 1px solid #00487c;
+  color: #00487c;
+}
