@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CustomTitle from "../../utils/CustomTitle";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { BrowserProvider, Contract } from "ethers";
+import { ethers, Contract } from "ethers";
 import { supportedNetworks } from "../../utils/networks";
 const jobsAbi = require("../../contracts/artifacts/contracts/jobs.sol/LGBTQJobMarket.json").abi;
 
@@ -55,7 +55,7 @@ function JobCreationPage() {
       return;
     }
 
-    const provider = new BrowserProvider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
     if (!provider) {
       alert("Provider not found");
@@ -72,7 +72,9 @@ function JobCreationPage() {
     
     try {
 
-      const signer = await provider.getSigner();
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+
 
       if(!signer) {
         alert("Signer not found");
