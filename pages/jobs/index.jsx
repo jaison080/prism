@@ -3,7 +3,6 @@ import CustomTitle from "../../utils/CustomTitle";
 import JobCard from "../../components/JobCard/JobCard";
 import Navbar from "../../components/Navbar/Navbar";
 import jobsData from "../../data/jobsData";
-import { useSearchParams } from "next/navigation";
 
 export default function JobsPage() {
  
