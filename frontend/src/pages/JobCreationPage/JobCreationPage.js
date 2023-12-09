@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import CustomTitle from "../../utils/CustomTitle";
 import "./JobCreationPage.css";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { BrowserProvider, Contract } from "ethers";
+import { supportedNetworks } from "../../utils/networks";
+const jobsAbi = require("../../contracts/artifacts/contracts/jobs.sol/LGBTQJobMarket.json").abi;
 
 function JobCreationPage() {
   const [role, setRole] = useState("");
@@ -47,6 +50,63 @@ function JobCreationPage() {
       createdAt: new Date().toISOString(),
     };
     console.log(data);
+
+    if (!window?.ethereum) {
+      alert("Please install metamask");
+      return;
+    }
+
+    const provider = new BrowserProvider(window.ethereum);
+
+    if (!provider) {
+      alert("Provider not found");
+      return;
+    }
+    const { chainId } = await provider.getNetwork();
+    // console.log(typeof chainId.toString(), chainId.toString(), Object.values(supportedNetworks)[0], typeof Object.keys(supportedNetworks)[0].toString());
+    if (Object.values(supportedNetworks).find((id) => {
+      return id.toString() === chainId.toString()
+    }) === undefined) {
+      alert(`Please switch to a supported network. Your current network is ${chainId}. Supproted chain ids are [${Object.values(supportedNetworks).join(", ")}]`);
+      return;
+    }
+    
+    try {
+
+      const signer = await provider.getSigner();
+
+      if(!signer) {
+        alert("Signer not found");
+        return;
+      }
+
+      if(!process.env.REACT_APP_CONTRACT_ADDRESS) {
+        alert("Contract address not found");
+        return;
+      }
+
+      const contract = new Contract(
+        process.env.REACT_APP_CONTRACT_ADDRESS,
+        jobsAbi,
+        signer
+      );
+
+      // Do stuff with contract
+      console.log(contract);
+
+      const res = await contract.postJob(
+        "hello1",
+        "hellodes",
+        "sds",
+        123,
+        ["hello", "world"],
+      );
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+
+
     handleReset();
   };
   const handleReset = () => {
