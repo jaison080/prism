@@ -133,8 +133,10 @@ contract LGBTQJobMarket {
                         "+", // segregator
                         "new job,", // notification body
                         _jobTitle,
-                        "at",
-                        _companyName
+                        " at ",
+                        _companyName,
+                        "$@",
+                        jobPostingCount 
                     )
                 
             )));

@@ -24,7 +24,8 @@ button {
   width: 700px;
   position: relative;
   border: 1px solid #00487c;
-  padding: 24px;
+  border-radius: 4px;
+  padding: 15px;
 }
 
 .job_card:hover,
@@ -42,6 +43,24 @@ button {
   box-sizing: border-box;
   position: relative;
   padding: 5px;
+}
+
+.notification_card_company_logo_img {
+  grid-area: 1 / 1 / 2 / 2;
+  height: 80px;
+  width: 80px;
+  box-sizing: border-box;
+  position: relative;
+  padding: 5px;
+}
+
+.notification_card_company_logo_img img {
+  max-height: calc(100% - 10px);
+  max-width: calc(100% - 10px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .job_card_company_logo_img img {
