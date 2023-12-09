@@ -1,0 +1,163 @@
+.job_info_modal_input input {
+  border: 0.3px solid #00487c;
+  border-radius: 15px;
+  padding: 0.75rem;
+  outline: none;
+  width: 95%;
+  font-family: "Mulish", sans-serif;
+}
+.job_info_modal_input textarea {
+  border: 0.3px solid #00487c;
+  border-radius: 15px;
+  padding: 0.75rem;
+  outline: none;
+  width: 95%;
+  resize: none;
+  font-family: "Mulish", sans-serif;
+}
+.job_info_modal_title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+.job_info_input__label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.job_info_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.job_info_fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.registration__form__register__button {
+  background: linear-gradient(180deg, #027bce 0%, #00487c 100%);
+  box-shadow: inset 0px 4px 4px #4bb3fd;
+  border-radius: 10px;
+  width: 180px;
+  height: 44px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: #ffffff;
+}
+.registration__form__register__button:hover {
+  background: linear-gradient(180deg, #00487c 0%, #027bce 100%);
+}
+.registration__form__register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.loginCard__body__button {
+  width: 150px;
+  height: 44px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  background: #00487c;
+  box-shadow: inset 0px 4px 4px rgba(75, 179, 253, 0.5);
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.loginCard__body__button:hover {
+  background-color: #023457;
+}
+
+.login__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.otherlogin__selector {
+  padding: 10px;
+  width: 150px;
+  height: 44px;
+  border: 0.5px solid #a4bbcc;
+  outline: none;
+  border-radius: 10px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #00487c;
+}
+
+.otherlogin__options {
+  color: #00487c;
+}
+
+.otherlogin__options:hover {
+  color: #ffffff !important;
+}
+
+.studentProfile__documents {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.studentProfile__documents__view {
+  width: 80px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  background: linear-gradient(180deg, #027bce 0%, #00487c 100%);
+  box-shadow: inset 0px 4px 4px #4bb3fd;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: #ffffff;
+}
+
+.studentProfile__documents__view:hover {
+  background: linear-gradient(0deg, #027bce 0%, #00487c 100%);
+}
+
+.studentProfile__document__heading {
+  font-weight: 700;
+  text-align: center;
+}

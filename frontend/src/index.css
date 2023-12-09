@@ -6,9 +6,13 @@ body {
 }
 
 input {
-  font-family: "Poppins", "sans-serif";
+  font-family: "Poppins", "sans-serif" !important;
 }
 
 button {
-  font-family: "Poppins", "sans-serif";
+  font-family: "Poppins", "sans-serif" ;
+}
+
+textarea {
+  font-family: "Poppins", "sans-serif" !important;
 }
