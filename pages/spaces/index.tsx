@@ -13,7 +13,7 @@ import { AccountContext } from '../../contexts';
 const Spaces: NextPage = () => {
   const { address } = useAccount();
   const { data: signer } = useSigner();
-
+  console.log("signer",signer)
   const { pgpPrivateKey, setPgpPrivateKey } = useContext<any>(AccountContext);
   const { SpaceWidgetComponent } = useSpaceComponents();
   const env = ENV.DEV;
@@ -26,6 +26,7 @@ const Spaces: NextPage = () => {
         account: address,
         env,
       });
+      console.log("user",user)
       let PgpPrivateKey = null;
       if (user?.encryptedPrivateKey) {
         PgpPrivateKey = await PushAPI.chat.decryptPGPKey({
