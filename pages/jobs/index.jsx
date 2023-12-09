@@ -5,7 +5,7 @@ import JobCard from "../../components/JobCard/JobCard";
 export default function JobsPage() {
   return (
     <>
-      <CustomTitle title="Add Job" />
+      <CustomTitle title="Jobs" />
       <div className={"jobs__container"}>
         <div className={"jobs__heading"}>JOBS</div>
         <div className={"jobs__list"}>

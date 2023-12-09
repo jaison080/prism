@@ -1,33 +1,34 @@
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
 
 import {
   getDefaultWallets,
   RainbowKitProvider,
   darkTheme,
-} from '@rainbow-me/rainbowkit';
-import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { sepolia } from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
-import { infuraProvider } from 'wagmi/providers/infura';
+} from "@rainbow-me/rainbowkit";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { sepolia } from "wagmi/chains";
+import { publicProvider } from "wagmi/providers/public";
+import { infuraProvider } from "wagmi/providers/infura";
 
-import '@rainbow-me/rainbowkit/styles.css';
-import '../styles/globals.css';
-import { useEffect, useState } from 'react';
+import "@rainbow-me/rainbowkit/styles.css";
+import "../styles/globals.css";
+import { useEffect, useState } from "react";
 // import { SpacesUIProvider } from '@pushprotocol/uiweb';
 // import { useSpaceComponents } from './../components/Spaces/useSpaceComponent';
-import { AccountContext } from '../contexts';
+import { AccountContext } from "../contexts";
+import { ThemeProvider, createTheme } from "@mui/material";
 
 const { chains, provider } = configureChains(
   [sepolia],
   [
-    infuraProvider({ apiKey: '5524d420b29f4f7a8d8d2f582a0d43f7' }),
+    infuraProvider({ apiKey: "5524d420b29f4f7a8d8d2f582a0d43f7" }),
     publicProvider(),
   ]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'Connect',
-  projectId: 'connect',
+  appName: "Connect",
+  projectId: "connect",
   chains,
 });
 
@@ -45,7 +46,7 @@ const SpacesComponentProvider = ({ children }: ISpacesComponentProps) => {
   // const { spaceUI } = useSpaceComponents();
 
   const customtheme = {
-    statusColorError: 'red',
+    statusColorError: "red",
   };
 
   return (
@@ -57,11 +58,20 @@ const SpacesComponentProvider = ({ children }: ISpacesComponentProps) => {
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [loadWagmi, setLoadWagmi] = useState(false);
-  const [pgpPrivateKey, setPgpPrivateKey] = useState<string>('');
+  const [pgpPrivateKey, setPgpPrivateKey] = useState<string>("");
 
   useEffect(() => {
     setLoadWagmi(true);
   }, []);
+
+  const theme = createTheme({
+    typography: {
+      allVariants: {
+        fontFamily: "Poppins",
+        textTransform: "none",
+      },
+    },
+  });
 
   return (
     <>
@@ -72,8 +82,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             <AccountContext.Provider
               value={{ pgpPrivateKey, setPgpPrivateKey }}
             >
-              {/* <SpacesComponentProvider> */}
-              <Component {...pageProps} />
+              <ThemeProvider theme={theme}>
+                {/* <SpacesComponentProvider> */}
+                <Component {...pageProps} />
+              </ThemeProvider>
               {/* </SpacesComponentProvider> */}
             </AccountContext.Provider>
           </RainbowKitProvider>
