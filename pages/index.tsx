@@ -1,5 +1,6 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { NextPage } from 'next';
+import { LogInWithAnonAadhaar } from 'anon-aadhaar-react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -14,6 +15,9 @@ const Index: NextPage = () => {
       {/* <Button>
         <Link href="/spaces">Spaces UI</Link>
       </Button> */}
+     
+						<LogInWithAnonAadhaar />
+				
     </Container>
   );
 };

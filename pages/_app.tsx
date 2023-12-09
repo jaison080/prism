@@ -5,10 +5,11 @@ import {
 	RainbowKitProvider,
 	darkTheme,
 } from '@rainbow-me/rainbowkit';
-import { configureChains, createClient, WagmiConfig } from 'wagmi';
+import { configureChains, createClient, WagmiConfig, useAccount } from 'wagmi';
 import { sepolia } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import { infuraProvider } from 'wagmi/providers/infura';
+import { useAnonAadhaar, LogInWithAnonAadhaar } from 'anon-aadhaar-react';
 
 import '@rainbow-me/rainbowkit/styles.css';
 import '../styles/globals.css';
@@ -62,10 +63,22 @@ const SpacesComponentProvider = ({ children }: ISpacesComponentProps) => {
 function MyApp({ Component, pageProps }: AppProps) {
 	const [loadWagmi, setLoadWagmi] = useState(false);
 	const [pgpPrivateKey, setPgpPrivateKey] = useState<string>('');
+	const { address } = useAccount();
+	const [anonAadhaar] = useAnonAadhaar();
+
+	useEffect(() => {
+		console.log('Anon Aadhaar status: ', anonAadhaar.status);
+	}, [anonAadhaar]);
 
 	useEffect(() => {
 		setLoadWagmi(true);
-	}, []);
+		if(window && !loadWagmi && !address && window.location.pathname !== '/' && anonAadhaar.status === 'logged-out') {
+			window.location.href = '/';
+		}
+		else if(window && window.location.pathname === '/' && address && anonAadhaar.status === 'logged-in') {
+			window.location.href = '/jobs';
+		}
+	}, [address, anonAadhaar]);
 
 	const theme = createTheme({
 		typography: {
