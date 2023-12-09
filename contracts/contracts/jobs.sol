@@ -5,6 +5,11 @@ interface IPUSHCommInterface {
     function sendNotification(address _channel, address _recipient, bytes calldata _identity) external;
 }
 
+interface IAnonAadhaarVerifier {
+    function verifyProof(
+        uint[2] calldata _pA, uint[2][2] calldata _pB, uint[2] calldata _pC, uint[34] calldata _pubSignals
+    ) external view returns (bool);
+}
 
 
 contract LGBTQJobMarket {
@@ -80,6 +85,12 @@ contract LGBTQJobMarket {
 
     // Event to notify when a new company is created
     event CompanyCreated(address indexed owner, string companyName);
+
+    // function verify(uint256[2] calldata _pA, uint[2][2] calldata _pB, uint[2] calldata _pC, uint[34] calldata _pubSignals) public view returns (bool) {
+    //     address anonAadhaarVerifierAddr = 
+    //     return IAnonAadhaarVerifier(anonAadhaarVerifierAddr).verifyProof(_pA, _pB, _pC, _pubSignals);
+    // }
+
 
     function createUser(string memory _username) external {
         require(bytes(_username).length > 0, "Username cannot be empty");
