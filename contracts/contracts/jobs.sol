@@ -29,6 +29,17 @@ contract LGBTQJobMarket {
         string resumeHash; // IPFS or any decentralized storage hash for the applicant's resume
     }
 
+    struct User {
+        string username;
+        address userAddress;
+    }
+
+    struct Company {
+        address owner; // Address of the company owner
+        string companyName;
+        string companyDescription;
+    }
+
     // Mapping to store job postings
     mapping(uint256 => JobPosting) public jobPostings;
 
@@ -37,17 +48,55 @@ contract LGBTQJobMarket {
     
     mapping(string => JobPosting) public jobsByTag;
 
+    mapping(string => address[]) public tagSubscibers;
+    mapping(address => string[]) public userSubscriptions;
+
+    // Mapping from user address to user details
+    mapping(address => User) public users;
+
+    // Mapping from company address to company details
+    mapping(address => Company) public companies;
+
+    // Counter for user registration
+    uint256 public userCount;
+
     // Counter for job postings
     uint256 public jobPostingCount;
 
     // Counter for job applications
     uint256 public jobApplicationCount;
 
+    uint256 public companyCount;
+
     // Event to notify when a new job is posted
     event JobPosted(uint256 jobId, address indexed employer, string jobTitle);
 
     // Event to notify when a new job application is submitted
     event JobApplied(uint256 applicationId, address indexed applicant, uint256 indexed jobId);
+
+    event SubscriptionAdded(address indexed user, string tag);
+
+    event UserCreated(address indexed user, string username);
+
+    // Event to notify when a new company is created
+    event CompanyCreated(address indexed owner, string companyName);
+
+    function createUser(string memory _username) external {
+        require(bytes(_username).length > 0, "Username cannot be empty");
+        require(users[msg.sender].userAddress == address(0), "User already exists");
+
+        userCount++;
+        users[msg.sender] = User(_username, msg.sender);
+
+        emit UserCreated(msg.sender, _username);
+    }
+
+    // Function to create a new company
+    function createCompany(string memory _companyName, string memory _companyDescription) external {
+        companyCount++;
+        companies[msg.sender] = Company(msg.sender, _companyName, _companyDescription);
+        emit CompanyCreated(msg.sender, _companyName);
+    }
 
     // Function to post a new job
     function postJob(string memory _jobTitle, string memory _jobDescription, string memory _companyName, uint256 _salary,string[] memory _tags) external {
@@ -80,6 +129,23 @@ contract LGBTQJobMarket {
             )));
         emit JobPosted(jobPostingCount, msg.sender, _jobTitle);
     }
+
+    // Function to subscribe to a tag by a user
+    
+
+    function subscribeToTag(string memory _tag) external {
+        // Check if the tag exists
+        require(bytes(jobsByTag[_tag].jobTitle).length > 0, "Tag does not exist");
+
+        // Check if the user is already subscribed to the tag
+        for (uint256 i = 0; i < userSubscriptions[msg.sender].length; i++) {
+            require(keccak256(abi.encodePacked(userSubscriptions[msg.sender][i])) != keccak256(abi.encodePacked(_tag)), "Already subscribed to this tag");
+        }
+        userSubscriptions[msg.sender].push(_tag);
+        tagSubscibers[_tag].push(msg.sender);
+        emit SubscriptionAdded(msg.sender, _tag);
+    }
+
 
     // Function to apply for a job
     function applyForJob(uint256 _jobId, string memory _resumeHash) external {
@@ -126,5 +192,25 @@ contract LGBTQJobMarket {
         }
 
         return applications;
+    }
+    //get tags subscribed by user
+    function getTagsSubscribedByUser(address _user) external view returns (string[] memory) {
+        string[] memory tags = new string[](userSubscriptions[_user].length);
+
+        for (uint256 i = 0; i < userSubscriptions[_user].length; i++) {
+            tags[i] = userSubscriptions[_user][i];
+        }
+
+        return tags;
+    }
+    //get users subscribed to a tag
+    function getUsersSubscribedToTag(string memory _tag) external view returns (address[] memory) {
+        address[] memory subcribedUsers = new address[](tagSubscibers[_tag].length);
+
+        for (uint256 i = 0; i < tagSubscibers[_tag].length; i++) {
+            subcribedUsers[i] = tagSubscibers[_tag][i];
+        }
+
+        return subcribedUsers;
     }
 }
