@@ -3,6 +3,8 @@ import CustomTitle from "../../utils/CustomTitle";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { BrowserProvider, Contract } from "ethers";
 import { supportedNetworks } from "../../utils/networks";
+import Navbar from "../../components/Navbar/Navbar";
+
 const jobsAbi = require("../../contracts/artifacts/contracts/jobs.sol/LGBTQJobMarket.json").abi;
 
 function JobCreationPage() {
@@ -119,6 +121,7 @@ function JobCreationPage() {
   return (
     <>
       <CustomTitle title="Add Job" />
+      <Navbar />
       <div className={"registration__container"}>
         <div className={"registration__heading"}>ADD JOB</div>
         <div className={"registration__form"}>
