@@ -124,7 +124,7 @@ function JobCreationPage() {
 			const res = await contract.postJob(
 				role,
 				description,
-				'Ethereum Foundation',
+				company_name,
 				10000,
 				tags?.split(','),
 
