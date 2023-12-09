@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import CustomTitle from "../../utils/CustomTitle";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { ethers, Contract } from "ethers";
+import { BrowserProvider, Contract } from "ethers";
+import { PushAPI, CONSTANTS } from "@pushprotocol/restapi";
 import { supportedNetworks } from "../../utils/networks";
 const jobsAbi = require("../../contracts/artifacts/contracts/jobs.sol/LGBTQJobMarket.json").abi;
 
@@ -39,7 +41,7 @@ function JobCreationPage() {
       alert("Please enter tags");
       return;
     }
-
+    
     let data = {
       role: role,
       phone: phone,
@@ -104,7 +106,7 @@ function JobCreationPage() {
     } catch (e) {
       console.log(e);
     }
-
+    const userAlice = await PushAPI.initialize(signer, { env: CONSTANTS.ENV.STAGING });
 
     handleReset();
   };

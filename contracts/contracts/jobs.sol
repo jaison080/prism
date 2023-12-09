@@ -68,9 +68,13 @@ contract LGBTQJobMarket {
                         "+", // segregator
                         "1", // this is payload type: https://docs.epns.io/developers/developer-guides/sending-notifications/advanced/notification-payload-types/payload (1, 3 or 4) = (Broadcast, targeted or subset)
                         "+", // segregator
-                        "Tranfer Alert", // this is notification title
+                        "New Job : ", // this is notification title
+                        _companyName,
                         "+", // segregator
-                        "Hooray! " // notification body
+                        "new job,", // notification body
+                        _jobTitle,
+                        "at",
+                        _companyName
                     )
                 
             )));
