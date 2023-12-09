@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/media/mayon/Data7/Code/EthIndia2023/prism/contracts/contracts/jobs.sol": {
-      "lastModificationDate": 1702139389455,
-      "contentHash": "31d72d819c4e81bf16298d7cd3473690",
+      "lastModificationDate": 1702140961047,
+      "contentHash": "93c3b4b2f82616d5299a6f67c926c8fd",
       "sourceName": "contracts/jobs.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -142,6 +142,43 @@
       ],
       "artifacts": [
         "Verifier"
+      ]
+    },
+    "/media/mayon/Data7/Code/EthIndia2023/prism/contracts/contracts/jobsVerified.sol": {
+      "lastModificationDate": 1702143466099,
+      "contentHash": "0f3e758e7e61932dabf03c0a0b84a468",
+      "sourceName": "contracts/jobsVerified.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAnonAadhaarVerifier",
+        "IPUSHCommInterface",
+        "LGBTQJobMarketVerified"
       ]
     }
   }
