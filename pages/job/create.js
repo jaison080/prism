@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CustomTitle from "../../utils/CustomTitle";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { BrowserProvider, Contract } from "ethers";
+import { ethers, Contract } from "ethers";
 import { supportedNetworks } from "../../utils/networks";
 const jobsAbi = require("../../contracts/artifacts/contracts/jobs.sol/LGBTQJobMarket.json").abi;
 
@@ -56,7 +56,7 @@ function JobCreationPage() {
       return;
     }
 
-    const provider = new BrowserProvider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
     if (!provider) {
       alert("Provider not found");
@@ -70,36 +70,35 @@ function JobCreationPage() {
       alert(`Please switch to a supported network. Your current network is ${chainId}. Supproted chain ids are [${Object.values(supportedNetworks).join(", ")}]`);
       return;
     }
-    
+
     try {
 
-      const signer = await provider.getSigner();
+      // Prompt user for account connections
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
 
-      if(!signer) {
+      if (!signer) {
         alert("Signer not found");
         return;
       }
 
-      if(!process.env.REACT_APP_CONTRACT_ADDRESS) {
+      if (!process.env.NEXT_PUBLIC_CONTRACT_ADDRESS) {
         alert("Contract address not found");
         return;
       }
 
       const contract = new Contract(
-        process.env.REACT_APP_CONTRACT_ADDRESS,
+        process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
         jobsAbi,
         signer
       );
 
-      // Do stuff with contract
-      console.log(contract);
-
       const res = await contract.postJob(
-        "hello1",
-        "hellodes",
-        "sds",
-        123,
-        ["hello", "world"],
+        role,
+        description,
+        "Ethereum Foundation",
+        10000,
+        tags?.split(","),
       );
       console.log(res);
     } catch (e) {
