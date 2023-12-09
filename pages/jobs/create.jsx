@@ -5,8 +5,8 @@ import { ethers, Contract } from "ethers";
 import { supportedNetworks } from "../../utils/networks";
 import Navbar from "../../components/Navbar/Navbar";
 
-const jobsAbi = require("../../contracts/artifacts/contracts/jobs.sol/LGBTQJobMarket.json").abi;
-
+const jobsAbi =
+  require("../../contracts/artifacts/contracts/jobs.sol/LGBTQJobMarket.json").abi;
 
 function JobCreationPage() {
   const [role, setRole] = useState("");
@@ -15,6 +15,7 @@ function JobCreationPage() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [tags, setTags] = useState("");
+  const [name, setName] = useState("");
 
   const handleSubmit = async () => {
     if (role === "") {
@@ -41,8 +42,13 @@ function JobCreationPage() {
       alert("Please enter tags");
       return;
     }
+    if (name === "") {
+      alert("Please enter a company name");
+      return;
+    }
 
     let data = {
+      company_name: name,
       role: role,
       phone: phone,
       email: email,
@@ -51,6 +57,7 @@ function JobCreationPage() {
       tags: tags.split(","),
       createdAt: new Date().toISOString(),
     };
+
     console.log(data);
 
     if (!window?.ethereum) {
@@ -65,17 +72,20 @@ function JobCreationPage() {
       return;
     }
     const { chainId } = await provider.getNetwork();
-    // console.log(typeof chainId.toString(), chainId.toString(), Object.values(supportedNetworks)[0], typeof Object.keys(supportedNetworks)[0].toString());
-    if (Object.values(supportedNetworks).find((id) => {
-      return id.toString() === chainId.toString()
-    }) === undefined) {
-      alert(`Please switch to a supported network. Your current network is ${chainId}. Supproted chain ids are [${Object.values(supportedNetworks).join(", ")}]`);
+    if (
+      Object.values(supportedNetworks).find((id) => {
+        return id.toString() === chainId.toString();
+      }) === undefined
+    ) {
+      alert(
+        `Please switch to a supported network. Your current network is ${chainId}. Supproted chain ids are [${Object.values(
+          supportedNetworks
+        ).join(", ")}]`
+      );
       return;
     }
 
     try {
-
-      // Prompt user for account connections
       await provider.send("eth_requestAccounts", []);
       const signer = provider.getSigner();
 
@@ -100,13 +110,12 @@ function JobCreationPage() {
         description,
         "Ethereum Foundation",
         10000,
-        tags?.split(","),
+        tags?.split(",")
       );
       console.log(res);
     } catch (e) {
       console.log(e);
     }
-
 
     handleReset();
   };
@@ -117,6 +126,7 @@ function JobCreationPage() {
     setDescription("");
     setLocation("");
     setTags("");
+    setName("");
   };
   return (
     <>
@@ -130,6 +140,20 @@ function JobCreationPage() {
               Job Details
             </div>
             <div className={"registration__form__section__fields"}>
+              <div className={"registration__form__section__field"}>
+                <div className={"registration__form__section__field__label"}>
+                  Company Name*
+                </div>
+                <div className={"registration__form__section__field__input"}>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
               <div className={"registration__form__section__field"}>
                 <div className={"registration__form__section__field__label"}>
                   Role*

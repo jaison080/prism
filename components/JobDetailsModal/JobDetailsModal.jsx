@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import React from "react";
 
-function JobDetailsModal({ open, handleClose }) {
+function JobDetailsModal({ open, handleClose, job }) {
   return (
     <Dialog
       open={open}
@@ -46,7 +46,7 @@ function JobDetailsModal({ open, handleClose }) {
             <div className={"job_info_field"}>
               <div className={"job_info_input__label"}>Job Title*</div>
               <div className={"job_info_modal_input"}>
-                <input type="text" value={"Title"} disabled />
+                <input type="text" value={job.role} disabled />
               </div>
             </div>
           </div>
@@ -54,15 +54,7 @@ function JobDetailsModal({ open, handleClose }) {
             <div className={"job_info_field"}>
               <div className={"job_info_input__label"}>Company Name*</div>
               <div className={"job_info_modal_input"}>
-                <input type="text" value={"Title"} disabled />
-              </div>
-            </div>
-          </div>
-          <div className={"job_info_fields"}>
-            <div className={"job_info_field"}>
-              <div className={"job_info_input__label"}>Work Hours*</div>
-              <div className={"job_info_modal_input"}>
-                <input type="text" value={"Title"} disabled />
+                <input type="text" value={job.company_name} disabled />
               </div>
             </div>
           </div>
@@ -70,15 +62,7 @@ function JobDetailsModal({ open, handleClose }) {
             <div className={"job_info_field"}>
               <div className={"job_info_input__label"}>Tags*</div>
               <div className={"job_info_modal_input"}>
-                <input type="text" value={"Title"} disabled />
-              </div>
-            </div>
-          </div>
-          <div className={"job_info_fields"}>
-            <div className={"job_info_field"}>
-              <div className={"job_info_input__label"}>Stipend*</div>
-              <div className={"job_info_modal_input"}>
-                <input type="text" value={"Title"} disabled />
+                <input type="text" value={job.tags.join(" , ")} disabled />
               </div>
             </div>
           </div>
@@ -86,7 +70,7 @@ function JobDetailsModal({ open, handleClose }) {
             <div className={"job_info_field"}>
               <div className={"job_info_input__label"}>Location*</div>
               <div className={"job_info_modal_input"}>
-                <input type="text" value={"Title"} disabled />
+                <input type="text" value={job.location} disabled />
               </div>
             </div>
           </div>
@@ -94,7 +78,7 @@ function JobDetailsModal({ open, handleClose }) {
             <div className={"job_info_field"}>
               <div className={"job_info_input__label"}>Contact Number*</div>
               <div className={"job_info_modal_input"}>
-                <input type="text" value={"Title"} disabled />
+                <input type="text" value={job.phone} disabled />
               </div>
             </div>
           </div>
@@ -102,7 +86,7 @@ function JobDetailsModal({ open, handleClose }) {
             <div className={"job_info_field"}>
               <div className={"job_info_input__label"}>Contact Email*</div>
               <div className={"job_info_modal_input"}>
-                <input type="text" value={"Title"} disabled />
+                <input type="text" value={job.email} disabled />
               </div>
             </div>
           </div>
@@ -113,7 +97,7 @@ function JobDetailsModal({ open, handleClose }) {
                 <textarea
                   type="text"
                   rows="7"
-                  value={"Description"}
+                  value={job.description}
                   disabled
                 ></textarea>{" "}
               </div>

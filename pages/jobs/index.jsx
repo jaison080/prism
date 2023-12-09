@@ -1,19 +1,23 @@
-import React from "react";
+import React, { use, useEffect } from "react";
 import CustomTitle from "../../utils/CustomTitle";
 import JobCard from "../../components/JobCard/JobCard";
 import Navbar from "../../components/Navbar/Navbar";
+import jobsData from "../../data/jobsData";
+import { useSearchParams } from "next/navigation";
 
 export default function JobsPage() {
+ 
+
   return (
     <>
       <CustomTitle title="Jobs" />
-      <Navbar/>
+      <Navbar />
       <div className={"jobs__container"}>
         <div className={"jobs__heading"}>JOBS</div>
         <div className={"jobs__list"}>
-          <JobCard />
-          <JobCard />
-          <JobCard />
+          {jobsData.map((job) => {
+            return <JobCard job={job} />;
+          })}
         </div>
       </div>
     </>
