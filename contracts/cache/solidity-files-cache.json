@@ -145,8 +145,8 @@
       ]
     },
     "/media/mayon/Data7/Code/EthIndia2023/prism/contracts/contracts/jobsVerified.sol": {
-      "lastModificationDate": 1702143466099,
-      "contentHash": "0f3e758e7e61932dabf03c0a0b84a468",
+      "lastModificationDate": 1702146307395,
+      "contentHash": "94bfa45f88f1dba44d6d346dd4261dc3",
       "sourceName": "contracts/jobsVerified.sol",
       "solcConfig": {
         "version": "0.8.19",

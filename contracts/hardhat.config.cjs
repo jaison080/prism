@@ -12,6 +12,10 @@ module.exports = {
   },
 
   networks: {
+    arbSepolia: {
+      url: process.env.ARB_SEPOLIA_RPC_URI,
+      accounts: [process.env.PRIVATE_KEY]
+    },
     sepolia: {
       url: process.env.SEPOLIA_RPC_URI,
       accounts: [process.env.PRIVATE_KEY]
