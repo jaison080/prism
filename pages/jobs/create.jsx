@@ -124,7 +124,7 @@ function JobCreationPage() {
 			const res = await contract.postJob(
 				role,
 				description,
-				company_name,
+				name,
 				10000,
 				tags?.split(','),
 
