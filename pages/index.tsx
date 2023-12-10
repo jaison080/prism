@@ -1,24 +1,26 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { NextPage } from 'next';
 import { LogInWithAnonAadhaar } from 'anon-aadhaar-react';
-import Link from 'next/link';
 import styled from 'styled-components';
+import Hero from "../components/Hero/Hero"
 
 const Index: NextPage = () => {
   return (
-    <Container>
-      <h1>Hello Next.js 👋</h1>
-      <ConnectButton />
-      <Button>
-        <Link href="/video">Video</Link>
-      </Button>
-      {/* <Button>
-        <Link href="/spaces">Spaces UI</Link>
-      </Button> */}
+    // <Container>
+    //   <h1>Hello Next.js 👋</h1>
+    //   <ConnectButton />
+    //   <Button>
+    //     <Link href="/video">Video</Link>
+    //   </Button>
+    //   {/* <Button>
+    //     <Link href="/spaces">Spaces UI</Link>
+    //   </Button> */}
      
-						<LogInWithAnonAadhaar />
+		// 				<LogInWithAnonAadhaar />
 				
-    </Container>
+    // </Container>
+    <>
+    <Hero/>
+    </>
   );
 };
 
