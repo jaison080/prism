@@ -24,15 +24,15 @@ export default function JobCard({ job }) {
         <div className="job_card_company_logo_img">
           <Image src={logo} alt="" />
         </div>
-        <div class="job_card_job_title">{job.role}</div>
-        <div class="job_card_company_name">{job.company_name}</div>
-        <div class="job_card_skills_container">
+        <div className="job_card_job_title">{job.role}</div>
+        <div className="job_card_company_name">{job.company_name}</div>
+        <div className="job_card_skills_container">
           {job.tags.map((skill) => {
-            return <div class="job_card_skill">{skill}</div>;
+            return <div className="job_card_skill">{skill}</div>;
           })}
         </div>
-        <button class="job_card_apply">Apply</button>
-        <button class="job_card_save" onClick={handleOpen}>
+        <button className="job_card_apply">Apply</button>
+        <button className="job_card_save" onClick={handleOpen}>
           View
         </button>
       </div>

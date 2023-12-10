@@ -9,12 +9,12 @@ export default function NotificationCard({ notification }) {
         <div className="notification_card_company_logo_img">
           <Image src={bell} width={400} height={400} alt="" />
         </div>
-        <div class="job_card_job_title">{notification?.title}</div>
-        <div class="job_card_company_name">{notification?.message}</div>
+        <div className="job_card_job_title">{notification?.title}</div>
+        <div className="job_card_company_name">{notification?.message.split("$@")[0]}</div>
         <button
-          class="job_card_save"
+          className="job_card_save"
           onClick={() => {
-            if (notification.url) window.open(notification.url, "_blank");
+            if (notification?.message.split("$@")[1]) window.open(`${window.location.origin}/jobs?id=${notification?.message.split("$@")[1]}`, "_blank");
           }}
         >
           More

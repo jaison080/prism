@@ -42,7 +42,7 @@ export default function JobsPage() {
         <div className={"jobs__heading"}>NOTIFICATIONS</div>
         <div className={"jobs__list"}>
           {notifications.map((notification) => {
-            return <NotificationCard notification={notification} />;
+            return <NotificationCard notification={notification} key={notification.sid}/>;
           })}
         </div>
       </div>
