@@ -712,7 +712,7 @@ button {
 
 /* BLOG CARD STYLES */
 .blog__container {
-  background-color: #D7CCC8;
+  background-color: #d7ccc8;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -722,7 +722,7 @@ button {
 .blog__card {
   background-color: #fff;
   max-width: 800px;
-  box-shadow: 2px 2px 5px #9E9E9E, -1px -1px 5px #9E9E9E;
+  box-shadow: 2px 2px 5px #9e9e9e, -1px -1px 5px #9e9e9e;
   border-radius: 3px;
   display: grid;
   grid-template-column: repeat(5, 1fr);
@@ -758,7 +758,7 @@ button {
   color: #555;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width: 600px) {
   .blog__card {
     display: block;
   }
@@ -770,4 +770,29 @@ button {
     border: 0;
     border-top: 1px solid #ccc;
   }
+}
+
+/*Housing Page Styles*/
+.housing__container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  align-items: center;
+  gap: 3rem;
+}
+.housing__heading {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 30px;
+  color: #00487c;
+}
+.housing__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
 }
