@@ -1,0 +1,84 @@
+.companion_card {
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .inputs {
+    display: block;
+    outline: none;
+    border-radius: 25px;
+    width: 500px;
+    margin: 1rem auto;
+    text-align: center;
+    border: none;
+    padding: 1rem;
+  }
+  .user_input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .details {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .card {
+    width: 350px;
+    padding: 1rem;
+    border-radius: 20px;
+    border: 0.3px solid #00487c;
+    text-align: center;
+    background-color: white;
+  }
+  
+  .chatbtn {
+    background-color: azure;
+    border: none;
+    outline: none;
+  }
+  .search_btn {
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    background-color: #00487c;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    margin: 1rem;
+  }
+  .search_btn:hover {
+    background-color: #012e4e;
+  }
+  .bookbtn {
+    padding: 1rem;
+    background-color: #00487c;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    margin: 1rem;
+  }
+  .bookbtn:hover {
+    background-color: #012e4e;
+  }
+  .companions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
