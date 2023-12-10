@@ -7,6 +7,7 @@ import { ethers } from "ethers";
 
 export default function JobsPage() {
   const [notifications, setNotifications] = React.useState([]);
+  
   const fetchNotifications = async () => {
     if (!window?.ethereum) {
       alert("Please install metamask");
