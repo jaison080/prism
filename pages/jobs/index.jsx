@@ -15,7 +15,7 @@ export default function JobsPage() {
       <div className={"jobs__container"}>
         <div className={"jobs__heading"}>JOBS</div>
         <button
-          class="job_card_apply"
+          className="job_card_apply"
           style={{
             padding: "1rem",
             borderRadius: "4px",
@@ -28,7 +28,7 @@ export default function JobsPage() {
         </button>
         <div className={"jobs__list"}>
           {jobsData.map((job) => {
-            return <JobCard job={job} />;
+            return <JobCard job={job} key={job.id} />;
           })}
         </div>
       </div>
